@@ -42,6 +42,8 @@ https://www.youtube.com/watch?v=TS8uS6Uhtek
 - [ ] Task 4
 
 ### To Do：
+线索： https://github.com/OpenBMB/ChatDev/pull/192
+
 - Set OpenAI API Key: Export your OpenAI API key as an environment variable. Replace "your_OpenAI_API_key" with your actual API key. Remember that this environment variable is session-specific, so you need to set it again if you open a new terminal session. On Unix/Linux:
 
 export OPENAI_API_KEY="b27ad5b6d481445495dafe897178f295"
