@@ -40,3 +40,14 @@ https://www.youtube.com/watch?v=TS8uS6Uhtek
 - [ ] 本地 LLM？
 - [ ] Task 3 
 - [ ] Task 4
+
+### To Do：
+- Set OpenAI API Key: Export your OpenAI API key as an environment variable. Replace "your_OpenAI_API_key" with your actual API key. Remember that this environment variable is session-specific, so you need to set it again if you open a new terminal session. On Unix/Linux:
+
+export OPENAI_API_KEY="b27ad5b6d481445495dafe897178f295"
+export BASE_URL="https://gpt4-duan.openai.azure.com/"
+
+On Windows:
+
+$env:OPENAI_API_KEY="b27ad5b6d481445495dafe897178f295"
+export BASE_URL="https://gpt4-duan.openai.azure.com/"
