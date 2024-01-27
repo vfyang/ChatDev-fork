@@ -34,13 +34,6 @@ https://www.youtube.com/watch?v=TS8uS6Uhtek
 | gpt-35-turbo-16k | gpt-35-turbo-16k | 0613 | Standard | 60K TPM  |
 | gpt-4            | gpt-4            | 0613 | Standard | 10K TPM  |
 
-### 计划任务：
-- [ ] 更改代码，该用 Azure OpenAI Key
-- [ ] 测试 Pong Game 和 Flappy Bird
-    -- python3 run.py --task "design a web version pong game" --name "Pong"
-- [ ] 本地 LLM？
-- [ ] Task 3 
-- [ ] Task 4
 
 ### To Do：
 线索： https://github.com/OpenBMB/ChatDev/pull/192
@@ -53,32 +46,17 @@ export AZURE_OPENAI_KEY="****************"
 export OPENAI_API_KEY="****************"
 
 On Windows:
+setx AZURE_OPENAI_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE" 
+setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 
-$env:OPENAI_API_KEY="****************"
-export BASE_URL="https://gpt4-duan.openai.azure.com/"
-
-```python
-## Azure OpenAI API sample code:
-#Note: The openai-python library support for Azure OpenAI is in preview.
-      #Note: This code sample requires OpenAI Python library version 0.28.1 or lower.
-import os
-import openai
-
-openai.api_type = "azure"
-openai.api_base = "https://gpt4-duan.openai.azure.com/"
-openai.api_version = "2023-07-01-preview"
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-message_text = [{"role":"system","content":"You are a marketing writing assistant. You help come up with creative content ideas and content like marketing emails, blog posts, tweets, ad copy and product descriptions. You write in a friendly yet professional tone but can tailor your writing style that best works for a user-specified audience. If you do not know the answer to a question, respond by saying \"I do not know the answer to your question.\""}]
-
-completion = openai.ChatCompletion.create(
-  engine="gpt-4",
-  messages = message_text,
-  temperature=0.7,
-  max_tokens=800,
-  top_p=0.95,
-  frequency_penalty=0,
-  presence_penalty=0,
-  stop=None
-)
-```
+### 计划任务：
+- [x] 更改代码，该用 Azure OpenAI Key
+- [x] 测试 Pong Game 和 Flappy Bird
+    - python3 run.py --task "design a web version pong game" --name "Pong"
+- [ ] 本地 LLM？
+- [x] 测试 Dash Plotly，django 
+    - Dash: 可以生成，但是错误的生成图表，而不是游戏。
+    - django：不能生成子目录结构，入口错误的设置为 main.py, 而不是 manage.py
+- [ ] 增量 修改已经生成的代码。
+- [x] Visualizer
+    - python visualizer/app.py  

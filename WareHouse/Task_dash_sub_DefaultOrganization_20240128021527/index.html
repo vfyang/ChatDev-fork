@@ -1,0 +1,50 @@
+'''
+This is the main HTML file that includes the Vue.js application.
+'''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #0000FF;
+        }
+        .btn {
+            background-color: #0000FF;
+            color: white;
+        }
+        .form-control {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="addTask">
+            <input v-model="newTask.title" placeholder="Title">
+            <input v-model="newTask.description" placeholder="Description">
+            <input v-model="newTask.priority_level" placeholder="Priority Level">
+            <input v-model="newTask.assignment" placeholder="Assignment">
+            <input v-model="newTask.ending_date" placeholder="Ending Date">
+            <button type="submit">Submit</button>
+        </form>
+        <form @submit.prevent="addUser">
+            <input v-model="newUser.username" placeholder="Username">
+            <input v-model="newUser.email" placeholder="Email">
+            <button type="submit">Submit</button>
+        </form>
+        <ul>
+            <li v-for="task in tasks">{{ task.title }}</li>
+        </ul>
+        <ul>
+            <li v-for="user in users">{{ user.username }}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
