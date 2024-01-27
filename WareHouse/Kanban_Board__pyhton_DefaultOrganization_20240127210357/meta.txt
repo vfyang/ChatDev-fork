@@ -1,5 +1,5 @@
 Task:
-design a web version pong game
+design a python version kanban board, with mutliple categories 'Work, Personal, Repeatable'
 
 Config:
 ChatEnvConfig.clear_structure: True
@@ -13,13 +13,13 @@ Roster:
 Chief Executive Officer, Counselor, Chief Human Resource Officer, Chief Product Officer, Chief Technology Officer, Programmer, Code Reviewer, Software Test Engineer, Chief Creative Officer
 
 Modality:
-website
+application
 
 Ideas:
 
 
 Language:
- JavaScript
+ Python
 
 Code_Version:
 4.0
