@@ -60,3 +60,9 @@ setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 - [ ] 增量 修改已经生成的代码。
 - [x] Visualizer
     - python visualizer/app.py  
+
+## 帮助测试一下：我的Python需要重装，混乱了，可能是失败的原因，请帮我测一下
+```shell
+python run.py --task "Develop a Django-based website for managing checklists with an integrated user and task management system. Each task should include: Title, Description, Priority Level,Assignment, Ending Date. Utilize Bootstrap and Vue.js.  blue color theme. make sure all the django folder structure are setup correctly, and the main entrance python file should be manage.py instead of main.py" --name "Task_django_sub" --model "GPT_4_32K"
+
+python run.py --task "Develop a dash based python  website for managing checklists with an integrated user and task management system. Each task should include: Title, Description, Priority Level,Assignment, Ending Date. Utilize Bootstrap and Vue.js.  blue color theme. make sure all the folder structure are setup correctly" --name "Task_dash_sub" --model "GPT_4_32K"
