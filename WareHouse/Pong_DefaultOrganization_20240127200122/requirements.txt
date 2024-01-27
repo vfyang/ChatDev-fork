@@ -1,0 +1,20 @@
+# Python Pong Game
+
+This is a simple pong game implemented in Python using the Pygame library.
+
+## Installation
+
+1. Ensure that you have Python 3 installed on your machine.
+2. Clone this repository.
+3. Install the dependencies by running `pip install -r requirements.txt` in your terminal.
+
+## How to Play
+
+Run `python main.py` in your terminal to start the game.
+
+Player 1 uses the W and S keys to move their paddle up and down, respectively.
+Player 2 uses the Up and Down arrow keys to move their paddle up and down, respectively.
+
+The goal of the game is to hit the ball with your paddle and prevent it from reaching your side of the screen. If the ball hits the left or right edge of the screen, the player on the opposite side scores a point, and the ball is reset to the center.
+
+Enjoy the game!

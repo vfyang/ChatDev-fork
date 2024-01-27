@@ -29,14 +29,29 @@ except ImportError:
     openai_new_api = False  # old openai api version
 
 import os
+import time
+# from azure.ai.openai import AzureOpenAI
+from openai import AzureOpenAI
+# from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-OPENAI_API_KEY = os.environ['OPENAI_API_KEY']
+# check env "OPENAI_API_TYPE", if it's "azure", get OPENAI_API_BASE, OPENAI_API_VERSION, OPENAI_API_KEY from env.
+# define OPENAI_API_TYPE, OPENAI_API_BASE, OPENAI_API_VERSION, OPENAI_API_KEY in exnironment variables.
+# on mac and linux, you can use "export OPENAI_API_TYPE=azure" to set env.
+# on windows, you can use "set OPENAI_API_TYPE=azure" to set env.
+OPENAPI_API_TYPE = os.environ.get("OPENAI_API_TYPE", "openai")
+if OPENAPI_API_TYPE == "azure":
+    OPENAI_API_BASE= os.environ.get("OPENAI_API_BASE")
+    OPENAI_API_VERSION = os.environ.get("OPENAI_API_VERSION", "2023-07-01-preview")
+    AZURE_OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
+    AZURE_OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY")
+    OPENAI_API_KEY = AZURE_OPENAI_KEY
+else:
+    OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', "")
+
 if 'BASE_URL' in os.environ:
     BASE_URL = os.environ['BASE_URL']
 else:
     BASE_URL = None
-
-
 class ModelBackend(ABC):
     r"""Base class for different model backends.
     May be OpenAI API, a local LLM, a stub for unit tests, etc."""
@@ -71,16 +86,29 @@ class OpenAIModel(ModelBackend):
         num_prompt_tokens += gap_between_send_receive
 
         if openai_new_api:
-            # Experimental, add base_url
-            if BASE_URL:
-                client = openai.OpenAI(
-                    api_key=OPENAI_API_KEY,
-                    base_url=BASE_URL,
+
+            
+            # if OPENAI_API_TYPE is azure, use AzureOpenAI
+            if OPENAPI_API_TYPE == "azure":
+
+                client = AzureOpenAI(
+                    api_key= AZURE_OPENAI_KEY,  
+                    api_version= OPENAI_API_VERSION,
+                    azure_endpoint = AZURE_OPENAI_ENDPOINT
                 )
+
             else:
-                client = openai.OpenAI(
-                    api_key=OPENAI_API_KEY
-                )
+                # Experimental, add base_url
+                if BASE_URL:
+                    client = openai.OpenAI(
+                        api_key=OPENAI_API_KEY,
+                        base_url=BASE_URL,
+                    )
+                else:
+                    client = openai.OpenAI(
+                        api_key=OPENAI_API_KEY
+                    )
+
 
             num_max_token_map = {
                 "gpt-3.5-turbo": 4096,
@@ -93,6 +121,7 @@ class OpenAIModel(ModelBackend):
                 "gpt-4-1106-preview": 4096,
                 "gpt-4-1106-vision-preview": 4096,
             }
+            
             num_max_token = num_max_token_map[self.model_type.value]
             num_max_completion_tokens = num_max_token - num_prompt_tokens
             self.model_config_dict['max_tokens'] = num_max_completion_tokens
@@ -126,6 +155,8 @@ class OpenAIModel(ModelBackend):
             num_max_token = num_max_token_map[self.model_type.value]
             num_max_completion_tokens = num_max_token - num_prompt_tokens
             self.model_config_dict['max_tokens'] = num_max_completion_tokens
+
+            time.sleep(0.1)
 
             response = openai.ChatCompletion.create(*args, **kwargs, model=self.model_type.value,
                                                     **self.model_config_dict)

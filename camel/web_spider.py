@@ -6,18 +6,37 @@ import wikipediaapi
 import os
 import time
 
-self_api_key = os.environ.get('OPENAI_API_KEY')
-BASE_URL = os.environ.get('BASE_URL')
+from openai import AzureOpenAI
 
-if BASE_URL:
-    client = openai.OpenAI(
-        api_key=self_api_key,
-        base_url=BASE_URL,
-    )
+OPENAPI_API_TYPE = os.environ.get("OPENAI_API_TYPE", "openai")
+if OPENAPI_API_TYPE == "azure":
+    OPENAI_API_BASE= os.environ.get("OPENAI_API_BASE")
+    OPENAI_API_VERSION = os.environ.get("OPENAI_API_VERSION", "2023-12-01-preview")
+    AZURE_OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
+    AZURE_OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY")
+    self_api_key=AZURE_OPENAI_KEY
 else:
-    client = openai.OpenAI(
-        api_key=self_api_key
+    self_api_key = os.environ.get('OPENAI_API_KEY', None)
+
+BASE_URL = os.environ.get('BASE_URL', None)
+
+# if OPENAI_API_TYPE is azure, use AzureOpenAI
+if OPENAPI_API_TYPE == "azure":
+    client = AzureOpenAI(
+        api_key= AZURE_OPENAI_KEY,  
+        api_version= OPENAI_API_VERSION,
+        azure_endpoint = AZURE_OPENAI_ENDPOINT
     )
+else:   
+    if BASE_URL:
+        client = openai.OpenAI(
+            api_key=self_api_key,
+            base_url=BASE_URL,
+        )
+    else:
+        client = openai.OpenAI(
+            api_key=self_api_key
+        )
 
 def get_baidu_baike_content(keyword):
     # design api by the baidubaike
