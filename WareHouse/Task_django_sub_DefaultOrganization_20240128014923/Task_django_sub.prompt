@@ -1,1 +1,0 @@
-Develop a Django-based website for managing checklists with an integrated user and task management system. Each task should include: Title, Description, Priority Level,Assignment, Ending Date. Utilize Bootstrap and Vue.js.  blue color theme. make sure all the django folder structure are setup correctly, and the main entrance python file should be manage.py instead of main.py

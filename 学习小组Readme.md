@@ -42,11 +42,11 @@ https://www.youtube.com/watch?v=TS8uS6Uhtek
 export OPENAI_API_TYPE="azure"
 export OPENAI_API_VERSION="2023-12-01-preview"
 export AZURE_OPENAI_ENDPOINT="https://gpt4-duan.openai.azure.com/"
-export AZURE_OPENAI_KEY="****************"
+export AZURE_OPENAI_API_KEY="****************"
 export OPENAI_API_KEY="****************"
 
 On Windows:
-setx AZURE_OPENAI_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE" 
+setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE" 
 setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 
 ### 计划任务：
@@ -55,14 +55,8 @@ setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
     - python3 run.py --task "design a web version pong game" --name "Pong"
 - [ ] 本地 LLM？
 - [x] 测试 Dash Plotly，django 
-    - Dash: 可以生成，但是错误的生成图表，而不是游戏。
+    - Dash: 可以生成，但是错误的生成图表，而不是游戏。如有数据库，不能工作。
     - django：不能生成子目录结构，入口错误的设置为 main.py, 而不是 manage.py
 - [ ] 增量 修改已经生成的代码。
 - [x] Visualizer
     - python visualizer/app.py  
-
-## 帮助测试一下：我的Python需要重装，混乱了，可能是失败的原因，请帮我测一下
-```shell
-python run.py --task "Develop a Django-based website for managing checklists with an integrated user and task management system. Each task should include: Title, Description, Priority Level,Assignment, Ending Date. Utilize Bootstrap and Vue.js.  blue color theme. make sure all the django folder structure are setup correctly, and the main entrance python file should be manage.py instead of main.py" --name "Task_django_sub" --model "GPT_4_32K"
-
-python run.py --task "Develop a dash based python  website for managing checklists with an integrated user and task management system. Each task should include: Title, Description, Priority Level,Assignment, Ending Date. Utilize Bootstrap and Vue.js.  blue color theme. make sure all the folder structure are setup correctly" --name "Task_dash_sub" --model "GPT_4_32K"

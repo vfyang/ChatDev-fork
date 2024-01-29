@@ -1,0 +1,1 @@
+Develop a dash based python  website for managing checklists with an integrated user and task management system. Each task should include: Title, Description, Priority Level,Assignment, Ending Date. Utilize Bootstrap and Vue.js.  blue color theme. make sure all the folder structure are setup correctly

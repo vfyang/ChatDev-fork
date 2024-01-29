@@ -43,8 +43,8 @@ if OPENAPI_API_TYPE == "azure":
     OPENAI_API_BASE= os.environ.get("OPENAI_API_BASE")
     OPENAI_API_VERSION = os.environ.get("OPENAI_API_VERSION", "2023-07-01-preview")
     AZURE_OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
-    AZURE_OPENAI_KEY = os.environ.get("AZURE_OPENAI_KEY")
-    OPENAI_API_KEY = AZURE_OPENAI_KEY
+    AZURE_OPENAI_API_KEY = os.environ.get("AZURE_OPENAI_API_KEY")
+    OPENAI_API_KEY = AZURE_OPENAI_API_KEY
 else:
     OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', "")
 
@@ -92,7 +92,7 @@ class OpenAIModel(ModelBackend):
             if OPENAPI_API_TYPE == "azure":
 
                 client = AzureOpenAI(
-                    api_key= AZURE_OPENAI_KEY,  
+                    api_key= AZURE_OPENAI_API_KEY,  
                     api_version= OPENAI_API_VERSION,
                     azure_endpoint = AZURE_OPENAI_ENDPOINT
                 )
